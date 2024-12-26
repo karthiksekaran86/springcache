@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      filename:
+        description: "File name"
+        required: true
+    
+
+jobs:
+  build:
+    runs-on: runner1
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: |
+        docker build -t karthiksekaran86\springcache-1:1 .  
+        docker image ls
+        docker run -p8085:8085 karthiksekaran86/springcache-1:1
